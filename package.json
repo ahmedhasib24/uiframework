@@ -1,0 +1,24 @@
+{
+    "name": "com.ahmedhasib24.uiframework",
+    "version": "1.0.0",
+    "displayName": "UI Framework",
+    "description": "A forked uiframework for unity. Forked from https://github.com/yankooliveira/uiframework",
+    "unity": "2021.3",
+    "keywords": [
+        "UI Framework",
+        "unity",
+        "ui",
+        "framework",
+        "UI",
+        "Framework"
+    ],
+    "author": {
+        "name": "Hasib Ahmed",
+        "email": "hasib2059@gmail.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ahmedhasib24/uiframework.git"
+    },
+    "dependencies": {}
+}

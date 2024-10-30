@@ -10,30 +10,35 @@ namespace deVoid.UIFramework.Editor
 {
     public static class UIFrameworkTools
     {
-        [MenuItem("Assets/Create/deVoid UI/UI Frame in Scene", priority = 2)]
-        public static void CreateUIFrameInScene() {
+        [MenuItem("Assets/Create/UIFramework/UI Frame in Scene", priority = 2)]
+        public static void CreateUIFrameInScene()
+        {
             CreateUIFrame();
         }
-        
-        [MenuItem("Assets/Create/deVoid UI/UI Frame Prefab", priority = 1)]
-        public static void CreateUIFramePrefab() {
-            var frame = CreateUIFrame();
-            
-            string prefabPath = GetCurrentPath();
-            prefabPath = EditorUtility.SaveFilePanel("UI Frame Prefab", prefabPath,"UIFrame", "prefab");
 
-            if (prefabPath.StartsWith(Application.dataPath)) {
-                prefabPath =  "Assets" + prefabPath.Substring(Application.dataPath.Length);
+        [MenuItem("Assets/Create/UIFramework/UI Frame Prefab", priority = 1)]
+        public static void CreateUIFramePrefab()
+        {
+            var frame = CreateUIFrame();
+
+            string prefabPath = GetCurrentPath();
+            prefabPath = EditorUtility.SaveFilePanel("UI Frame Prefab", prefabPath, "UIFrame", "prefab");
+
+            if (prefabPath.StartsWith(Application.dataPath))
+            {
+                prefabPath = "Assets" + prefabPath.Substring(Application.dataPath.Length);
             }
 
-            if (!string.IsNullOrEmpty(prefabPath)) {
-                CreateNewPrefab(frame, prefabPath);    
+            if (!string.IsNullOrEmpty(prefabPath))
+            {
+                CreateNewPrefab(frame, prefabPath);
             }
 
             Object.DestroyImmediate(frame);
         }
 
-        private static GameObject CreateUIFrame() {
+        private static GameObject CreateUIFrame()
+        {
             var uiLayer = LayerMask.NameToLayer("UI");
             var root = new GameObject("UIFrame");
             var camera = new GameObject("UICamera");
@@ -102,26 +107,31 @@ namespace deVoid.UIFramework.Editor
             return root;
         }
 
-        public static string GetCurrentPath() {
+        public static string GetCurrentPath()
+        {
             string path = AssetDatabase.GetAssetPath(Selection.activeObject);
-            if (path == "") {
+            if (path == "")
+            {
                 path = "Assets";
             }
-            else if (Path.GetExtension(path) != "") {
+            else if (Path.GetExtension(path) != "")
+            {
                 path = path.Replace(Path.GetFileName(AssetDatabase.GetAssetPath(Selection.activeObject)), "");
             }
 
             return path;
         }
-        
-        private static void SetPrivateField(object target, object element, string fieldName) {
+
+        private static void SetPrivateField(object target, object element, string fieldName)
+        {
             var prop = target.GetType().GetField(fieldName,
                 System.Reflection.BindingFlags.NonPublic
                 | System.Reflection.BindingFlags.Instance);
             prop.SetValue(target, element);
         }
 
-        private static GameObject CreateRect(string name, GameObject parentGO, int layer) {
+        private static GameObject CreateRect(string name, GameObject parentGO, int layer)
+        {
             var parent = parentGO.GetComponent<RectTransform>();
             var newRect = new GameObject(name, typeof(RectTransform));
             newRect.layer = layer;
@@ -136,8 +146,9 @@ namespace deVoid.UIFramework.Editor
 
             return newRect;
         }
-        
-        private static void CreateNewPrefab(GameObject obj, string localPath) {
+
+        private static void CreateNewPrefab(GameObject obj, string localPath)
+        {
             PrefabUtility.SaveAsPrefabAsset(obj, localPath);
         }
     }
