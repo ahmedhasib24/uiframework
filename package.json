@@ -1,7 +1,7 @@
 {
     "name": "com.ahmedhasib24.uiframework",
     "version": "1.0.0",
-    "displayName": "UIFramework",
+    "displayName": "deVoid UIFramework",
     "description": "A forked uiframework for unity. Forked from https://github.com/yankooliveira/uiframework",
     "unity": "2021.3",
     "keywords": [
